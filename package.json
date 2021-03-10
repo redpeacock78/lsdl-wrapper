@@ -1,0 +1,36 @@
+{
+  "name": "lsdl-wrapper",
+  "version": "1.0.0",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "description": "Node wrapper around line-sticker-downloder.",
+  "repository": "https://github.com/redpeacock78/lsdl-wrapper",
+  "author": "redpeacock78",
+  "license": "MIT",
+  "keywords": [
+    "line",
+    "sticker",
+    "download",
+    "wrapper"
+  ],
+  "devDependencies": {
+    "@types/node": "^14.14.32",
+    "@typescript-eslint/eslint-plugin": "^4.16.1",
+    "@typescript-eslint/parser": "^4.16.1",
+    "eslint": "^7.21.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1",
+    "ts-loader": "^8.0.17",
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "line-sticker-downloder": "^1.2.13"
+  },
+  "scripts": {
+    "lint": "eslint src/**/*.ts",
+    "lint-fix": "eslint --fix src/**/*.ts",
+    "build": "yarn lint-fix && tsc -p tsconfig.json",
+    "prepublishOnly": "yarn build"
+  }
+}
