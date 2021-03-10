@@ -1,5 +1,5 @@
 # `lsdl-wrapper`
-Node wrapper around [`line-sticker-downloder`](github.com/redpeacock78/line-sticker-downloder).
+Node wrapper around [`line-sticker-downloder`](https://github.com/redpeacock78/line-sticker-downloder).
 
 ## 🛠 Usage
 ```typescript
