@@ -14,7 +14,7 @@ sticker.then(() => {
 lsdl.async("7457240", "downloads");
 // The file is saved in the downloads directory
 
-const options: { [keys: string]: boolean } = {
+const options: { [key: string]: boolean } = {
     animation: true,
     gif: true,
     sound: true
@@ -25,9 +25,130 @@ lsdl("11978", "downloads", options);
 // or: lsdl("https://store.line.me/stickershop/product/11978/ja", "downloads", options);
 // or: lsdl.async("11978", "downloads", options);
 ```
+### ⚙ Example
+#### 📄 example.ts
+```typescript
+import * as lsdl from 'lsdl-wrapper';
+
+const stiker: Promise<void> = lsdl("7457240", "downloads");
+sticker.then((): void => {
+    console.log('OK!');
+});
+```
+#### 🖥 On Terminal
+```console
+$ ts-node example.ts
+OK!
+$ tree downloads
+downloads
+└── Akatsuki_UNI_sticker_#1
+    ├── @2x_key_png
+    │   ├── 180117102@2x_key.png
+    │   ├── 180117103@2x_key.png
+    │   ├── 180117104@2x_key.png
+    │   ├── 180117106@2x_key.png
+    │   ├── 180117108@2x_key.png
+    │   ├── 180117110@2x_key.png
+    │   ├── 180117112@2x_key.png
+    │   ├── 180117114@2x_key.png
+    │   ├── 180117116@2x_key.png
+    │   ├── 180117118@2x_key.png
+    │   ├── 180117120@2x_key.png
+    │   ├── 180117122@2x_key.png
+    │   ├── 180117124@2x_key.png
+    │   ├── 180117126@2x_key.png
+    │   ├── 180117128@2x_key.png
+    │   ├── 180117129@2x_key.png
+    │   ├── 180117130@2x_key.png
+    │   ├── 180117131@2x_key.png
+    │   ├── 180117133@2x_key.png
+    │   ├── 180117134@2x_key.png
+    │   ├── 180117135@2x_key.png
+    │   ├── 180117136@2x_key.png
+    │   ├── 180117137@2x_key.png
+    │   └── 180117142@2x_key.png
+    ├── @2x_png
+    │   ├── 180117102@2x.png
+    │   ├── 180117103@2x.png
+    │   ├── 180117104@2x.png
+    │   ├── 180117106@2x.png
+    │   ├── 180117108@2x.png
+    │   ├── 180117110@2x.png
+    │   ├── 180117112@2x.png
+    │   ├── 180117114@2x.png
+    │   ├── 180117116@2x.png
+    │   ├── 180117118@2x.png
+    │   ├── 180117120@2x.png
+    │   ├── 180117122@2x.png
+    │   ├── 180117124@2x.png
+    │   ├── 180117126@2x.png
+    │   ├── 180117128@2x.png
+    │   ├── 180117129@2x.png
+    │   ├── 180117130@2x.png
+    │   ├── 180117131@2x.png
+    │   ├── 180117133@2x.png
+    │   ├── 180117134@2x.png
+    │   ├── 180117135@2x.png
+    │   ├── 180117136@2x.png
+    │   ├── 180117137@2x.png
+    │   └── 180117142@2x.png
+    ├── key_png
+    │   ├── 180117102_key.png
+    │   ├── 180117103_key.png
+    │   ├── 180117104_key.png
+    │   ├── 180117106_key.png
+    │   ├── 180117108_key.png
+    │   ├── 180117110_key.png
+    │   ├── 180117112_key.png
+    │   ├── 180117114_key.png
+    │   ├── 180117116_key.png
+    │   ├── 180117118_key.png
+    │   ├── 180117120_key.png
+    │   ├── 180117122_key.png
+    │   ├── 180117124_key.png
+    │   ├── 180117126_key.png
+    │   ├── 180117128_key.png
+    │   ├── 180117129_key.png
+    │   ├── 180117130_key.png
+    │   ├── 180117131_key.png
+    │   ├── 180117133_key.png
+    │   ├── 180117134_key.png
+    │   ├── 180117135_key.png
+    │   ├── 180117136_key.png
+    │   ├── 180117137_key.png
+    │   └── 180117142_key.png
+    └── png
+        ├── 180117102.png
+        ├── 180117103.png
+        ├── 180117104.png
+        ├── 180117106.png
+        ├── 180117108.png
+        ├── 180117110.png
+        ├── 180117112.png
+        ├── 180117114.png
+        ├── 180117116.png
+        ├── 180117118.png
+        ├── 180117120.png
+        ├── 180117122.png
+        ├── 180117124.png
+        ├── 180117126.png
+        ├── 180117128.png
+        ├── 180117129.png
+        ├── 180117130.png
+        ├── 180117131.png
+        ├── 180117133.png
+        ├── 180117134.png
+        ├── 180117135.png
+        ├── 180117136.png
+        ├── 180117137.png
+        └── 180117142.png
+
+5 directories, 96 files
+```
+---
 
 ## 🔗 API
-### `lsdl(sticker: string, out_path?: string, options?: {}) => Promise<void>`
+### `lsdl(sticker: string, out_path?: string, options?: {[key: string]: boolean}): Promise<void>`
 Write the sticker data from the `sticker` to `out_path`. Returns a Promise which is resolved when `out_path` exists.  
 If `out_path` is omitted, it defaults to current directory.  
 You can specify not only a sticker ID but also a URL for the `sticker`.
@@ -40,7 +161,7 @@ You can specify not only a sticker ID but also a URL for the `sticker`.
 - `manga`: Manga sticker download Only. (Cannot be used with any other option)  
 
 ***All `options` values ​​are set with `boolean`.***
-### `lsdl.async(sticker: string, out_path?: string, options?: {}) => undefined`
+### `lsdl.async(sticker: string, out_path?: string, options?: {[key: string]: boolean}): undefined`
 Writes sticker data from `sticker` to `out_path` synchronously.  
 If `out_path` is omitted, it defaults to current directory.  
 You can specify not only a sticker ID but also a URL for the `sticker`.
@@ -53,5 +174,6 @@ You can specify not only a sticker ID but also a URL for the `sticker`.
 - `manga`: Manga sticker download Only. (Cannot be used with any other option)  
 
 ***All `options` values ​​are set with `boolean`.***
+
 ## 🥝 Lisence
-MIT
+[MIT](https://github.com/redpeacock78/lsdl-wrapper/blob/master/LICENSE)
