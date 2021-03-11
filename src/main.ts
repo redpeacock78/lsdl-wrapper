@@ -5,9 +5,8 @@ interface from_root {
   (...parts: string[]): string;
 }
 const from_root: from_root = (...parts: string[]): string =>
-  path.join(path.resolve(""), ...parts);
+  path.join(path.resolve(__dirname, "../../"), ...parts);
 const lsdl_bin: string = from_root(
-  "node_modules",
   "line-sticker-downloder",
   "bin",
   "main.js"
