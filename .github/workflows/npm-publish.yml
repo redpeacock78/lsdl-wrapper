@@ -20,7 +20,7 @@ jobs:
         run: |
           yarn add -D can-npm-publish
           yarn install --frozen-lockfile
-      - name: check version and add tag
+      - name: Check version and Add tag
         run: |
           ./release.sh && \
           yarn remove can-npm-publish
