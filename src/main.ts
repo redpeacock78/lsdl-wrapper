@@ -12,23 +12,19 @@ const lsdl_bin: string = from_root(
   "main.js"
 );
 
-interface options_type {
-  animation?: boolean;
-  effect?: boolean;
-  gif?: boolean;
-  sound?: boolean;
-  custom?: boolean;
-  manga?: boolean;
-}
+type options_type = {
+  animation?: boolean,
+  effect?: boolean,
+  gif?: boolean,
+  sound?: boolean,
+  custom?: boolean,
+  manga?: boolean,
+};
 interface func_parser_args {
   (sticker: string, out_path?: string, options?: options_type): string[];
 }
 
-const parser_args: func_parser_args = (
-  sticker: string,
-  out_path?: string,
-  options: options_type = {}
-): string[] => {
+const parser_args: func_parser_args = (sticker: string, out_path?: string, options: options_type = {}): string[] => {
   const args: string[] = [sticker];
   if (out_path != null && out_path != "") {
     args.push("-d");
@@ -48,12 +44,8 @@ interface Lsdl {
   async(sticker: string, out_path?: string, options?: options_type): undefined;
 }
 
-const lsdl: Lsdl = (
-  sticker: string,
-  out_path: string,
-  options: options_type = {}
-): Promise<void> => {
-  out_path == "" && out_path == null ? (out_path = null) : "";
+const lsdl: Lsdl = (sticker: string, out_path: string, options: options_type = {}): Promise<void> => {
+  out_path === "" && out_path === null ? (out_path = null) : "";
   const args: string[] = parser_args(sticker, out_path, options);
   return new Promise((resolve, reject): void => {
     const child: child_process.ChildProcessWithoutNullStreams = child_process.spawn(
@@ -67,18 +59,14 @@ const lsdl: Lsdl = (
       if (code === 0) {
         resolve();
       } else {
-        reject("Error:" + code);
+        reject(`Error: ${code}`);
       }
     });
   });
 };
 
-lsdl.async = (
-  sticker: string,
-  out_path: string,
-  options: options_type = {}
-): undefined => {
-  out_path == "" && out_path == null ? (out_path = null) : "";
+lsdl.async = (sticker: string, out_path: string, options: options_type = {}): undefined => {
+  out_path === "" && out_path === null ? (out_path = null) : "";
   const args: string[] = parser_args(sticker, out_path, options);
   const { status, error } = child_process.spawnSync(lsdl_bin, args);
   if (error) {
@@ -87,7 +75,7 @@ lsdl.async = (
     if (status === 0) {
       return;
     } else {
-      throw new Error("Subprocess failed: " + status);
+      throw new Error(`Subprocess failed: ${status}`);
     }
   }
 };
