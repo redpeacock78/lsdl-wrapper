@@ -1,11 +1,12 @@
 # `lsdl-wrapper`
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/redpeacock78/lsdl-wrapper/blob/master/LICENSE) [![npm version](https://badge.fury.io/js/lsdl-wrapper.svg)](https://badge.fury.io/js/lsdl-wrapper) [![Npm Publish](https://github.com/redpeacock78/lsdl-wrapper/actions/workflows/npm-publish.yml/badge.svg?branch=master)](https://github.com/redpeacock78/lsdl-wrapper/actions/workflows/npm-publish.yml) [![Maintainability](https://api.codeclimate.com/v1/badges/a9ef35818a2256bc4785/maintainability)](https://codeclimate.com/github/redpeacock78/lsdl-wrapper/maintainability)  
 Node wrapper around [`line-sticker-downloder`](https://github.com/redpeacock78/line-sticker-downloder).
 
 ## 🛠 Usage
 ```typescript
 import * as lsdl from 'lsdl-wrapper';
 
-const stiker: Promise<void> = lsdl("7457240");
+const sticker: Promise<void> = lsdl("7457240");
 sticker.then(() => {
     // Behavior when successful
     // The file is saved in the current directory
@@ -30,7 +31,9 @@ lsdl("11978", "downloads", options);
 ```typescript
 import * as lsdl from 'lsdl-wrapper';
 
-const stiker: Promise<void> = lsdl("7457240", "downloads");
+const ID_or_URL = "7457240"; // https://store.line.me/stickershop/product/7457240/ja
+const dir = "downloads";
+const sticker: Promise<void> = lsdl(ID_or_URL, dir);
 sticker.then((): void => {
     console.log('OK!');
 });
