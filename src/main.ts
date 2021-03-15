@@ -1,16 +1,6 @@
-import * as path from "path";
 import * as child_process from "child_process";
 
-interface from_root {
-  (...parts: string[]): string;
-}
-const from_root: from_root = (...parts: string[]): string =>
-  path.join(path.resolve(__dirname, "../../"), ...parts);
-const lsdl_bin: string = from_root(
-  "line-sticker-downloder",
-  "bin",
-  "main.js"
-);
+const lsdl_bin: string = require.resolve("line-sticker-downloder").replace('dist', 'bin');
 
 type options_type = {
   animation?: boolean,
@@ -26,7 +16,7 @@ interface func_parser_args {
 
 const parser_args: func_parser_args = (sticker: string, out_path?: string, options: options_type = {}): string[] => {
   const args: string[] = [sticker];
-  if (out_path != null && out_path != "") {
+  if (out_path !== null && out_path !== "") {
     args.push("-d");
     args.push(out_path);
   }
@@ -52,9 +42,6 @@ const lsdl: Lsdl = (sticker: string, out_path: string, options: options_type = {
       lsdl_bin,
       args
     );
-    child.on("error", (err: Error): void => {
-      reject(err);
-    });
     child.on("exit", (code: number): void => {
       if (code === 0) {
         resolve();
@@ -68,15 +55,11 @@ const lsdl: Lsdl = (sticker: string, out_path: string, options: options_type = {
 lsdl.async = (sticker: string, out_path: string, options: options_type = {}): undefined => {
   out_path === "" && out_path === null ? (out_path = null) : "";
   const args: string[] = parser_args(sticker, out_path, options);
-  const { status, error } = child_process.spawnSync(lsdl_bin, args);
-  if (error) {
-    throw error;
+  const { status } = child_process.spawnSync(lsdl_bin, args);
+  if (status === 0) {
+    return;
   } else {
-    if (status === 0) {
-      return;
-    } else {
-      throw new Error(`Subprocess failed: ${status}`);
-    }
+    throw new Error(`Subprocess failed: ${status}`);
   }
 };
 
