@@ -2,3 +2,5 @@
 *.sh
 src/
 tsconfig.json
+downloads
+coverage
