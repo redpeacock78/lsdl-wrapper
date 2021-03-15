@@ -1,6 +1,8 @@
 .*
-*.sh
 src/
+test/
+coverage/
+downloads/
+*.sh
+jest.config.js
 tsconfig.json
-downloads
-coverage
